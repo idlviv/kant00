@@ -16,5 +16,11 @@ Looser.prototype.hello = function(who) {
   console.log('Hello', who.name);
 };
 
-exports.User1 = User;
-global.Looser1 = Looser;
+// exports = module.exports = this т.т.
+// this.User = User
+// module.exports.User = User
+exports.User = User;
+
+//запис, для якого при імпорті звертаэмось
+//замість user.Looser просто Looser
+module.exports = Looser;
