@@ -1,26 +1,26 @@
-var phrases = require('./ua');
+var db = require('../db');
 
 function User(name) {
   this.name = name;
 }
 
-function Looser(name) {
-  this.name = name;
-}
+// function Looser(name) {
+//   this.name = name;
+// }
 
 User.prototype.hello = function(who) {
-  console.log(phrases.Hello, who.name);
+  console.log(db.getPhrase('Hello'), who.name);
 };
 
-Looser.prototype.hello = function(who) {
-  console.log('Hello', who.name);
-};
+// Looser.prototype.hello = function(who) {
+//   console.log('Hello', who.name);
+// };
 
 // exports = module.exports = this т.т.
-// this.User = User
-// module.exports.User = User
-exports.User = User;
+// this.Looser = Looser
+// module.exports = Looser
+// exports.Looser = Looser;
 
 //запис, для якого при імпорті звертаэмось
-//замість user.Looser просто Looser
-module.exports = Looser;
+//замість user.User просто User
+module.exports = User;

@@ -1,17 +1,25 @@
 // з початку шукає ф-л user, потім папку user
-// а в ній по замовчуванню шукає ф-л index (user тут папка)
-var user = require('./user');
+var User = require('./user');
+var log = require('./logger')(module);
+
+//Щоб написати просто db без шляху, встановити
+//>set NODE_PATH=. >node server.js
+// https://nodejs.org/api/modules.html#modules_all_together
+var db = require('./db');
+
+db.connect();
 
 function run() {
-//exports
-  var bob = new user.User('Bob');
-  var job = new user.User('Job');
-//global
-  var bobLooser = new Looser('Bob');
-  var jobLooser = new Looser('Job');
+
+  var bob = new User('Bob');
+  var job = new User('Job');
+
+  log(db.getPhrase('Run successful'));
+  // var bobLooser = new User.Looser('Bob');
+  // var jobLooser = new User.Looser('Job');
 
   bob.hello(job);
-  bobLooser.hello(jobLooser);
+  // bobLooser.hello(jobLooser);
 }
 
 // якщо хтось використовує його як модуль через
